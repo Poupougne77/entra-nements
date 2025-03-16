@@ -1,0 +1,30 @@
+import folium
+
+c = folium.Map(location=[49.43144, 1.10425], zoom_start=15)
+
+folium.Marker([49.44027, 1.085629], popup="Eglise").add_to(c)
+folium.Marker([49.440292, 1.094878], popup="Cathédrale").add_to(c)
+folium.Marker([49.421494, 1.122783], popup="Basilique").add_to(c)
+folium.Marker([49.433602, 1.109873], popup="Panorama").add_to(c)
+folium.Marker([49.442572, 1.065132], popup="Parc").add_to(c)
+
+folium.Circle(
+    radius=1784,
+    location=[49.430307, 1.085629],
+    fill=False
+    ).add_to(c)
+
+folium.Circle(
+    radius=1286,
+    location=[49.440292, 1.094878],
+    fill=False
+    ).add_to(c)
+
+folium.Circle(
+    radius=1655,
+    location=[49.421494, 1.122783],
+    fill=False
+    ).add_to(c)
+
+c.save("Rouen2.html")
+
