@@ -1,0 +1,57 @@
+from tkinter import *
+import random
+
+fenetre = Tk()
+fenetre.geometry("500x300+500+300")
+fenetre.title("JEU MULTIPLICATION")
+fenetre.configure(bg="LightSteelBlue")
+
+# Variable globale pour stocker le résultat de la multiplication
+mult = 0
+
+def Afficher():
+    global mult
+    nbre_1 = random.randint(1, 20)  # Générer deux nombres aléatoires entre 1 et 20
+    nbre_2 = random.randint(1, 20)
+    mult = nbre_1 * nbre_2  # Calculer leur produit
+    label_5.config(text=f'{nbre_1} * {nbre_2}', bg='LightSteelBlue', font=('impact', 40))
+    label_5.place(x=160, y=100)  # Mettre à jour le label avec la multiplication
+    e1.delete(0, 'end')  # Réinitialiser le champ de saisie
+    resultat_label.config(text="")  # Effacer le message précédent
+
+def jouer():
+    try:
+        a = int(e1.get())  # Récupérer la réponse saisie par l'utilisateur
+        if a == mult:  # Vérifier si la réponse est correcte
+            resultat_label.config(text="GAGNÉ", fg="green", font=('Helvetica', 20))  # Afficher "GAGNÉ" en vert
+        else:
+            resultat_label.config(text="PERDU", fg="red", font=('Helvetica', 20))  # Afficher "PERDU" en rouge
+    except ValueError:
+        resultat_label.config(text="Entrez un nombre valide", fg="orange", font=('Helvetica', 15))  # Message en cas d'erreur
+
+# Bouton pour afficher la multiplication
+b5 = Button(fenetre, text="Afficher la multiplication", bg="LightSteelBlue", font="Gadugi", command=Afficher)
+b5.place(x=160, y=50)
+
+# Bouton pour jouer
+b2 = Button(fenetre, text="Jouer", bg="LightSteelBlue", font="Gadugi", command=jouer)
+b2.place(x=400, y=50)
+
+# Champ de saisie pour la réponse
+e1 = Entry(fenetre, bg='black', bd=10, font=('Candara', 13), fg='white', justify='center')
+e1.place(x=50, y=200)
+
+# Bouton pour afficher "Résultat proposé"
+b3 = Button(fenetre, text="Résultat proposé", font=('helvetica', 12), bg="LightSteelBlue")
+b3.place(x=50, y=170)
+
+# Label pour afficher la multiplication
+label_5 = Label(fenetre)
+label_5.place(x=160, y=100)
+
+# Label pour afficher le résultat (GAGNÉ ou PERDU)
+resultat_label = Label(fenetre, bg="LightSteelBlue")
+resultat_label.place(x=160, y=250)  # Positionner en bas pour les résultats
+
+fenetre.mainloop()
+
